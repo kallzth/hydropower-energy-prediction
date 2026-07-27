@@ -55,5 +55,6 @@ Python · NumPy · Pandas · Matplotlib · Seaborn · Scikit-learn
 5. Run all cells top to bottom
 
 ---
-Author: Kaleab Zelalem | github.com/kallzth
+Author: **Kaleab Zelalem** | github.com/kallzth
+
 Software Engineering Student | Addis Ababa Institute of Technology
