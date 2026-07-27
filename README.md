@@ -1,5 +1,10 @@
 # Hydropower Energy Production Prediction
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?logo=scikit-learn)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 ML project predicting energy output (MW) of a hydroelectric dam
 using Linear Regression and SGD Regression.
 
@@ -17,14 +22,14 @@ Features: 8 input variables | Target: Energy Production (MW)
 
 | Feature              | Unit   | Correlation Strength |
 |----------------------|--------|----------------------|
-| Water Flow Rate      | m3/s   | Strong (positive)    |
-| Head                 | meters | Strong (positive)    |
+| Water Flow Rate      | m3/s   | Strong (positive)✅  |
+| Head                 | meters | Strong (positive)✅  |
 | Turbine Efficiency   | %      | Moderate             |
 | Generator Efficiency | %      | Moderate             |
 | Reservoir Level      | meters | Moderate             |
 | Gate Opening         | %      | Moderate             |
-| Ambient Temperature  | deg C  | Weak                 |
-| Barometric Pressure  | mbar   | Weak                 |
+| Ambient Temperature  | deg C  | Weak ⚠️              |
+| Barometric Pressure  | mbar   | Weak ⚠️              |
 
 ## Results
 
@@ -51,3 +56,4 @@ Python · NumPy · Pandas · Matplotlib · Seaborn · Scikit-learn
 
 ---
 Author: Kaleab Zelalem | github.com/kallzth
+Software Engineering Student | Addis Ababa Institute of Technology
