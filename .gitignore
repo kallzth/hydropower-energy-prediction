@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Data files 
+*.xlsx
+*.csv
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+desktop.ini
