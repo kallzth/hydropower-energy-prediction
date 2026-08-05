@@ -1,12 +1,12 @@
 # Hydropower Energy Production Prediction
 
+ML project predicting energy output (MW) of a hydroelectric dam
+using Linear Regression and SGD Regression.
+
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?logo=scikit-learn)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)
 ![License](https://img.shields.io/badge/License-MIT-green)
-
-ML project predicting energy output (MW) of a hydroelectric dam
-using Linear Regression and SGD Regression.
 
 ## Project Overview
 
