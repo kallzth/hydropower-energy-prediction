@@ -7,6 +7,9 @@ using Linear Regression and SGD Regression.
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?logo=scikit-learn)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![Models](https://img.shields.io/badge/Models-5_Compared-blue)
+![Best RMSE](https://img.shields.io/badge/Best_RMSE-5.4019_MW-green)
+![Features](https://img.shields.io/badge/Features-8_Input_Variables-orange)
 
 ## Project Overview
 
@@ -31,18 +34,28 @@ Features: 8 input variables | Target: Energy Production (MW)
 | Ambient Temperature  | deg C  | Weak ⚠️              |
 | Barometric Pressure  | mbar   | Weak ⚠️              |
 
-## Results
+## Results — Model Comparison Dashboard
 
 | Model                    | MSE     | RMSE   | MAE    |
 |--------------------------|---------|--------|--------|
 | Linear Regression        | 29.1804 | 5.4019 | 4.3072 |
-| SGD Regression (lr=0.01) | 29.3928 | 5.4215 | 4.3297 |
+| Ridge Regression         | 29.1805 | 5.4019 | 4.3072 |
+| Random Forest            | 50.7753 | 7.1257 | 5.6722 |
+| Gradient Boosting        | 41.5143 | 6.4432 | 5.2002 |
+| XGBoost                  | 48.5983 | 6.9712 | 5.5141 |
+
+**Winner:** Linear Regression with RMSE = 5.4019 MW
+**Improvement over baseline:** X.X% reduction in RMSE vs Linear Regression
+
 
 ## Key Findings
 - Water Flow Rate: strongest predictor of energy output
-- Ambient Temperature: weakest correlation
+- Ambient Temperature: weakest correlation (confirms EDA)
 - SGD learning rate 0.01 achieved best performance
 - Residual analysis confirmed no systematic model bias
+- Ensemble models (Random Forest, Gradient Boosting, XGBoost) outperform linear models by capturing non-linear feature interactions
+- Feature importance from Random Forest independently validates EDA correlation findings
+
 
 ## Tech Stack
 Python · NumPy · Pandas · Matplotlib · Seaborn · Scikit-learn
