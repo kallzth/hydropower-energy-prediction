@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Hydropower Energy Predictor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #F0F9FF;
+           display: flex; justify-content: center; padding: 2rem; }
+    .container { background: white; border-radius: 12px;
+                 padding: 2rem; max-width: 600px; width: 100%;
+                 box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    h1 { color: #1E40AF; font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #6B7280; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 500;
+            color: #374151; margin-bottom: 4px; }
+    .unit { color: #9CA3AF; font-weight: 400; }
+    input[type=number] { width: 100%; padding: 8px 12px;
+                          border: 1px solid #D1D5DB; border-radius: 8px;
+                          font-size: 0.95rem; outline: none; }
+    input[type=number]:focus { border-color: #1E40AF;
+                                box-shadow: 0 0 0 3px #BFDBFE; }
+    button { width: 100%; padding: 12px; background: #1E40AF;
+             color: white; border: none; border-radius: 8px;
+             font-size: 1rem; font-weight: 600; cursor: pointer;
+             margin-top: 1rem; }
+    button:hover { background: #1D4ED8; }
+    .result { margin-top: 1.5rem; background: #ECFDF5;
+              border: 1px solid #6EE7B7; border-radius: 10px;
+              padding: 1.25rem; text-align: center; }
+    .result-value { font-size: 2rem; font-weight: 700; color: #065F46; }
+    .result-label { color: #374151; font-size: 0.9rem; margin-top: 4px; }
+    .api-note { margin-top: 1.5rem; background: #F8FAFC;
+                border: 1px solid #E2E8F0; border-radius: 8px;
+                padding: 1rem; font-size: 0.82rem; color: #6B7280; }
+    .api-note code { background: #E2E8F0; padding: 2px 6px;
+                     border-radius: 4px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <h1>Hydropower Energy Predictor</h1>
+    <p class='subtitle'>Enter dam parameters to predict energy output (MW)</p>
+
+    <form method='POST' action='/predict'>
+
+      <div class='form-group'>
+        <label>Water Flow Rate <span class='unit'>(m³/s)</span></label>
+        <input type='number' name='Water_Flow_Rate (m³/s)' step='0.01'
+               value='{{ inputs.Water_Flow_Rate__m3_s__ if inputs else 250 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Head <span class='unit'>(meters)</span></label>
+        <input type='number' name='Head (meters)' step='0.01'
+               value='{{ inputs.Head__meters__ if inputs else 50 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Turbine Efficiency <span class='unit'>(%)</span></label>
+        <input type='number' name='Turbine_Efficiency (%)' step='0.01' min='0' max='100'
+               value='{{ inputs.Turbine_Efficiency__percent__ if inputs else 85 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Generator Efficiency <span class='unit'>(%)</span></label>
+        <input type='number' name='Generator_Efficiency (%)' step='0.01' min='0' max='100'
+               value='{{ inputs.Generator_Efficiency__percent__ if inputs else 90 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Reservoir Level <span class='unit'>(meters)</span></label>
+        <input type='number' name='Reservoir_Level (meters)' step='0.01'
+               value='{{ inputs.Reservoir_Level__meters__ if inputs else 100 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Gate Opening <span class='unit'>(%)</span></label>
+        <input type='number' name='Gate_Opening (%)' step='0.01' min='0' max='100'
+               value='{{ inputs.Gate_Opening__percent__ if inputs else 75 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Ambient Temperature <span class='unit'>(°C)</span></label>
+        <input type='number' name='Ambient_Temperature (°C)' step='0.01'
+               value='{{ inputs.Ambient_Temperature__degrees_celsius__ if inputs else 25 }}' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Barometric Pressure <span class='unit'>(mbar)</span></label>
+        <input type='number' name='Barometric_Pressure (mbar)' step='0.01'
+               value='{{ inputs.Barometric_Pressure__mbar__ if inputs else 1013 }}' required>
+      </div>
+
+      <button type='submit'>Predict Energy Output</button>
+    </form>
+
+    {% if prediction is not none %}
+    <div class='result'>
+      <div class='result-value'>{{ prediction }} MW</div>
+      <div class='result-label'>Predicted Energy Output</div>
+    </div>
+    {% endif %}
+
+    <div class='api-note'>
+      <strong>JSON API:</strong> POST to <code>/predict</code> with JSON body.<br>
+      <strong>Health check:</strong> GET <code>/health</code><br>
+      <strong>Model:</strong> Trained on UCI Hydropower Dataset
+    </div>
+  </div>
+</body>
+</html>
