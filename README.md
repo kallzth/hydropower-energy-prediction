@@ -39,6 +39,7 @@ Features: 8 input variables | Target: Energy Production (MW)
 | Model                    | MSE     | RMSE   | MAE    |
 |--------------------------|---------|--------|--------|
 | Linear Regression        | 29.1804 | 5.4019 | 4.3072 |
+| SGD Regression (lr=0.01) | 29.3928 | 5.4215 | 4.3297 |
 | Ridge Regression         | 29.1805 | 5.4019 | 4.3072 |
 | Random Forest            | 50.7753 | 7.1257 | 5.6722 |
 | Gradient Boosting        | 41.5143 | 6.4432 | 5.2002 |
