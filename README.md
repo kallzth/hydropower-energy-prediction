@@ -46,7 +46,41 @@ Features: 8 input variables | Target: Energy Production (MW)
 | XGBoost                  | 48.5983 | 6.9712 | 5.5141 |
 
 **Winner:** Linear Regression with RMSE = 5.4019 MW
-**Improvement over baseline:** X.X% reduction in RMSE vs Linear Regression
+**Key insight:** Linear Regression outperformed all ensemble methods — confirming 
+that the relationship between dam physics and energy output is fundamentally linear. 
+Water flow × head determines power by physics, not complex non-linear patterns.
+
+## 🚀 Live API
+
+**Prediction form:** https://hydropower-energy-predictor.onrender.com
+**API endpoint:**    https://hydropower-energy-predictor.onrender.com/predict
+**Health check:**    https://hydropower-energy-predictor.onrender.com/health
+
+### JSON API Usage
+
+```bash
+curl -X POST https://hydropower-energy-predictor.onrender.com/predict \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "WaterFlowRate": 250,
+    "Head": 50,
+    "TurbineEfficiency": 85,
+    "GeneratorEfficiency": 90,
+    "ReservoirLevel": 100,
+    "GateOpening": 75,
+    "AmbientTemperature": 25,
+    "BarometricPressure": 1013
+  }'
+```
+
+Response:
+```json
+{
+  "predicted_energy_mw": 266.93,
+  "model_used": "LinearRegression",
+  "inputs": { "WaterFlowRate": 250.0, "..." : "..." }
+}
+```
 
 
 ## Key Findings
@@ -54,7 +88,7 @@ Features: 8 input variables | Target: Energy Production (MW)
 - Ambient Temperature: weakest correlation (confirms EDA)
 - SGD learning rate 0.01 achieved best performance
 - Residual analysis confirmed no systematic model bias
-- Ensemble models (Random Forest, Gradient Boosting, XGBoost) outperform linear models by capturing non-linear feature interactions
+- Linear Regression outperformed Random Forest, Gradient Boosting, and XGBoost — validating that hydropower energy follows linear physical laws (P = ρghQ)
 - Feature importance from Random Forest independently validates EDA correlation findings
 
 
